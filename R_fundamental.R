@@ -17,5 +17,10 @@ print(log(16,base=2))
 
 #pre build objects
 data() #pre package dataset in R, built-in function
-co <- co2 #co2 is a dataset object , built-in dataset
+co <- co2 #co2 is a dataset object , built-in dataset. mauna loa atmospheric co2 concetration data
 
+pi #pie
+Inf+1 #infinite
+
+#variable names
+solution_1 <- (-b + sqrt(b^2 - 4*a*c))/(2*a)
