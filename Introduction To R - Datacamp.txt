@@ -1,0 +1,205 @@
+### R cheat sheet created by nael chris
+##day 2 
+
+matrix(combine/list, byrow=FALSE/TRUE, nrow=3)
+cbind(m1,m2,..) -> column bind
+rbind(m1,m2,..) -> row bind
+
+c(1,2,3,3) -> vector 1 ,2 ,3 ,3 
+names(c(...)) -> giving title for the vector/data 
+colnames() -> col names for matrix
+rownames() -> row names for matrix
+
+note : you can do boolean operator for selection of c() ex c(1,2,3) > 2 => false, false , true
+
+colSums() -> sum of all columns
+rowSums() -> sum of all row
+ls() -> to see what is inside the workspace
+
+index in R start with 1 to n not 0 to n-1
+
+=====
+factors ?
+The term factor refers to a statistical data type used to store categorical variables. The difference between a categorical variable and a continuous variable is that a categorical variable can belong to a limited number of categories. A continuous variable, on the other hand, can correspond to an infinite number of values.
+
+It is important that R knows whether it is dealing with a continuous or a categorical variable, as the statistical models you will develop in the future treat both types differently. (You will see later why this is the case.)
+
+A good example of a categorical variable is sex. In many circumstances you can limit the sex categories to "Male" or "Female". (Sometimes you may need different categories. For example, you may need to consider chromosomal variation, hermaphroditic animals, or different cultural norms, but you will always have a finite number of categories.)
+=======
+
+1. factor -> categorical variables ( belong to a limited number of vategories)
+2. continuous variable can correspond to an infinite number of values.
+
+we use factor() function to encode vector as a factor
+ex : 
+
+input:
+# Sex vector
+sex_vector <- c("Male", "Female", "Female", "Male", "Male")
+
+# Convert sex_vector to a factor
+factor_sex_vector <- factor(sex_vector)
+
+# Print out factor_sex_vector
+factor_sex_vector
+
+
+outputs : 
+
+factor_sex_vector
+[1] Male   Female Female Male   Male  
+Levels: Female Male
+
+
+#why should you use it ?
+two type of categorical variables : nominal categorical variable, ordinal categorical variable.
+
+1.nominal variable -> there is no implied order, is impossible to say that one is worth more than the other. ex : "elephant" "giraffe" "donkey" "horse" => impossible to say that one stands above or below the other
+
+2. ordinal variables -> have natural ordering. ex : temprature ( medium, hight, low)
+
+#Factor lavels
+changing the factor level.
+use levels(factor_vector) function !
+
+changing the name for factor lavels
+levels(factor_vector) <- c("name1", "name2",...)
+
+ex :
+# Code to build factor_survey_vector
+survey_vector <- c("M", "F", "F", "M", "M")
+factor_survey_vector <- factor(survey_vector)
+
+# Specify the levels of factor_survey_vector
+levels(factor_survey_vector) <- c("Male","Female")
+
+factor_survey_vector
+
+output :
+[1] Female Male   Male   Female Female
+Levels: Male Female
+
+note : the order which you assign the level is important!!!
+
+
+#summarizing a factor
+summary() -> give you a quick overview of the contents of a variable
+summary(my_var)
+
+#ordered factor -> natural ordering 
+
+factor(some_vector,
+       ordered = TRUE,
+       levels = c("lev1", "lev2" ...))
+
+#comparing ordered factors
+==========================================data frames
+# what is data frame ? a frame of data that can contain diffrent data types.
+
+When you work with (extremely) large data sets and data frames, your first task as a data analyst is to develop a clear understanding of its structure and main elements. 
+
+So how to do this in R? Well, the function head() enables you to show the first observations of a data frame. Similarly, the function tail() prints out the last observations in your data set.
+
+Both head() and tail() print a top line called the 'header', which contains the names of the different variables in your data set.
+
+
+#creating data frame 
+data.frame(column1, column2,...)
+
+str() -> investigate the structure of a database
+
+df[row,column]
+
+if column left blank than meaning all of the elements. same with row.
+
+you can use $ as a shortcut for columns names if your columns have names
+
+ex :
+
+input:
+
+rings_vector <- planets_df$rings
+  
+# Print out rings_vector
+rings_vector
+
+output :
+rings_vector
+[1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+
+using $ we will get all the data column value from planets_df and stored it as a variable
+
+subset(data_frame,subset=(logical True/False)) -> is used to select the data row which we want only.
+
+##Sorting
+Making and creating rankings is one of mankind's favorite affairs. These rankings can be useful (best universities in the world), entertaining (most influential movie stars) or pointless (best 007 look-a-like).
+
+In data analysis you can sort your data according to a certain variable in the data set. In R, this is done with the help of the function order().
+
+order() is a function that gives you the ranked position of each element when it is applied on a variable, such as a vector for example:
+
+a <- c(100, 10, 1000)
+order(a)
+[1] 2 1 3
+10, which is the second element in a, is the smallest element, so 2 comes first in the output of order(a). 100, which is the first element in a is the second smallest element, so 1 comes second in the output of order(a).
+
+This means we can use the output of order(a) to reshuffle a:
+
+a[order(a)]
+[1]   10  100 1000
+
+===============================list
+
+recap :
+Vectors (one dimensional array): can hold numeric, character or logical values. The elements in a vector all have the same data type.
+
+Matrices (two dimensional array): can hold numeric, character or logical values. The elements in a matrix all have the same data type.
+
+Data frames (two-dimensional objects): can hold numeric, character or logical values. Within a column all elements have the same data type, but different columns can be of different data type.
+
+
+A list in R allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. These objects can be matrices, vectors, data frames, even other lists, etc. It is not even required that these objects are related to each other in any way.
+
+to construct list use list() function
+
+my_list <- list(comp1,comp2,...)
+
+##creating a named list
+
+my_list <- list(name1 = comp1, name2 = comp2) #you can give list name 
+
+This creates a list with components that are named name1, name2, and so on. If you want to name your lists after you've created them, you can use the names() function as you did with vectors. The following commands are fully equivalent to the assignment above:
+
+my_list <- list(your_comp1, your_comp2)
+names(my_list) <- c("name1", "name2")
+
+
+list in practice : 
+df[["actors"]] printing from the list object(vector or etc) named actors
+df$actors
+df[["actors"]][2] printing the second elemen from actors 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#end here !!!
+
